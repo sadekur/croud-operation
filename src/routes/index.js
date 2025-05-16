@@ -5,6 +5,7 @@ import Error from '../pages/Error';
 import NavBar from '../layouts/NavBar';
 import BooksView from '../features/books/BooksView';
 import AddBook from '../features/books/AddBook';
+import Footer from '../layouts/Footer';
 
 const Index = () => {
   return (
@@ -23,6 +24,7 @@ const Index = () => {
           </Routes>
         </main>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 };
