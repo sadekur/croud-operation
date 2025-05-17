@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteBook } from './BookSlice';
+import { Link } from 'react-router-dom';
 
 const BooksView = () => {
   const books = useSelector((state) => state.bookReducer.books);
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
+  const handleDeleteBook = (id) => {
     if (window.confirm('Are you sure you want to delete this book?')) {
       dispatch(deleteBook(id));
     }
@@ -41,14 +42,21 @@ const BooksView = () => {
                   <td className="px-6 py-4 font-medium text-gray-800">{book.title}</td>
                   <td className="px-6 py-4 text-gray-600">{book.author}</td>
                   <td className="px-6 py-4 text-center space-x-2">
-                    <button
-                      // onClick={() => handleEdit(book.id)}
-                      className="bg-yellow-400 hover:bg-yellow-500 text-white py-1 px-3 rounded text-sm"
+                    <Link
+                      // to={`/edit-book/${book.id}`}
+                      to="/edit-book" state= {{id: book.id, title: book.title, author: book.author}}
+                      className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm"
                     >
-                      Edit
-                    </button>
+                       <button
+                        // onClick={() => handleEdit(book.id)}
+                        className="bg-yellow-400 hover:bg-yellow-500 text-white py-1 px-3 rounded text-sm"
+                      >
+                        Edit
+                      </button>
+                    </Link>
+                   
                     <button
-                      onClick={() => handleDelete(book.id)}
+                      onClick={() => handleDeleteBook(book.id)}
                       className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded text-sm"
                     >
                       Delete
