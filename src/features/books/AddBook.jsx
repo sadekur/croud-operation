@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBook } from './BookSlice';
+import { useNavigate } from 'react-router-dom';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const numofBooks = useSelector((state) => state.bookReducer.books.length);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newBook = { id: numofBooks + 1, title, author };
-    console.log(newBook);
+    dispatch(addBook(newBook));
+    navigate('/show-books', { replace: true });
 
     // Clear form
     setTitle('');

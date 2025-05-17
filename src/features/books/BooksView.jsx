@@ -1,16 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { deleteBook } from './booksSlice'; // Assuming you have a deleteBook action
+import { deleteBook } from './BookSlice';
 
 const BooksView = () => {
   const books = useSelector((state) => state.bookReducer.books);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const handleDelete = (id) => {
-  //   if (window.confirm('Are you sure you want to delete this book?')) {
-  //     dispatch(deleteBook(id));
-  //   }
-  // };
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this book?')) {
+      dispatch(deleteBook(id));
+    }
+  };
 
   // const handleEdit = (id) => {
   //   alert(`Edit book with ID: ${id}`);
@@ -48,7 +48,7 @@ const BooksView = () => {
                       Edit
                     </button>
                     <button
-                      // onClick={() => handleDelete(book.id)}
+                      onClick={() => handleDelete(book.id)}
                       className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded text-sm"
                     >
                       Delete
